@@ -4,24 +4,39 @@ Class {
 	#instVars : [
 		'one',
 		'eight',
-		'three'
+		'three',
+		'two',
+		'four',
+		'six'
 	],
 	#category : #ASTVisitors
 }
 
 { #category : #tests }
 VisitorTest >> setUp [
+
 super setUp.
 
 	one := AVLiteral new
 		value: 1;
 		yourself.
-	eight := AVLiteral new
-		value: 8;
+	two := AVLiteral new
+		value: 2;
 		yourself.
 	three := AVLiteral new
 		value: 3;
-		yourself
+		yourself.
+	four := AVLiteral new
+		value: 4;
+		yourself.
+	six := AVLiteral new 
+		value: 6;
+		yourself.
+	eight := AVLiteral new
+		value: 8;
+		yourself.
+	
+	
 ]
 
 { #category : #tests }
@@ -66,4 +81,32 @@ VisitorTest >> testExpressionStringPreorder [
 	
 	print := PrintVisitor new. 
 	self assert: (expression acceptVisitor: print) equals: '/ + 1 8 3'
+]
+
+{ #category : #tests }
+VisitorTest >> testSecondExpression [
+	
+	| expression2 |
+	expression2 := six - one * two.
+	self assert: expression2 operator equals: #*.
+	
+]
+
+{ #category : #tests }
+VisitorTest >> testSecondExpression2 [
+	
+	| expression2 |
+	expression2 := (six - one) * two.
+	self assert: expression2 leftBranch operator equals: #-.
+	
+]
+
+{ #category : #tests }
+VisitorTest >> testSecondExpressionStringPreorder [
+	
+	| expression2 print |
+	expression2 := six - one * two.
+	
+	print := PrintVisitor new. 
+	self assert: (expression2 acceptVisitor: print) equals: '* - 6 1 2'
 ]

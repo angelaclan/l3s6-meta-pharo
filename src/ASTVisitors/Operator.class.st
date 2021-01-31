@@ -19,6 +19,24 @@ Operator class >> divide: anAVLiteral with: anAVLiteral2 [
 ]
 
 { #category : #'as yet unclassified' }
+Operator class >> minus: anAVLiteral with: anAVLiteral2 [
+	^ self new
+		operator: #-;
+		leftBranch: anAVLiteral;
+		rightBranch: anAVLiteral2;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
+Operator class >> multiply: anAVLiteral with: anAVLiteral2 [
+	^ self new
+		operator: #*;
+		leftBranch: anAVLiteral;
+		rightBranch: anAVLiteral2;
+		yourself
+]
+
+{ #category : #'as yet unclassified' }
 Operator class >> plus: anAVLiteral with: anOperator [
 	^ self new
 		operator: #+;
@@ -49,7 +67,6 @@ Operator >> operator [
 
 { #category : #'as yet unclassified' }
 Operator >> operator: aString [ 
-
 	operator := aString
 ]
 
